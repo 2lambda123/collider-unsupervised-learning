@@ -241,7 +241,7 @@ def csv_to_hdf5(directory):
     out_file.create_dataset('event_ID', data = df['event_ID'].astype('float16'), compression = 'gzip')
     out_file.create_dataset('process_ID', data = df['process_ID'], compression = 'gzip', dtype = dt)
     out_file.create_dataset('event_weight', data = df['event_weight'].astype('int'), compression = 'gzip')
-    out_file.create_dataset('MET_values', data = df[['MET', 'MET_Phi']].astype('float16'), compression = 'gzip')
+    out_file.create_dataset('MET_values', data = df[['MET', 'MET_Phi']].astype('float64'), compression = 'gzip')
 
     for entry in list_of_lists[1:]:
         out_file.create_dataset(entry[0], data = df[entry], compression = 'gzip', dtype = dt)
