@@ -183,7 +183,7 @@ def single_csv_to_hdf5(path):
     out_file.create_dataset('event_ID', data = df['event_ID'].astype('float16'), compression = 'gzip')
     out_file.create_dataset('process_ID', data = df['process_ID'], compression = 'gzip', dtype = dt)
     out_file.create_dataset('event_weight', data = df['event_weight'].astype('int'), compression = 'gzip')
-    out_file.create_dataset('MET_values', data = df[['MET', 'MET_Phi']].astype('float16'), compression = 'gzip')
+    out_file.create_dataset('MET_values', data = df[['MET', 'MET_Phi']].astype('float64'), compression = 'gzip')
 
     for entry in list_of_lists[1:]:
         out_file.create_dataset(entry[0], data = df[entry], compression = 'gzip', dtype = dt)
@@ -191,10 +191,7 @@ def single_csv_to_hdf5(path):
     out_file.close()
 
     #IMPORTANT
-    #This code will mainly make the files be in a mix of variable types. ALL numerical values can be
-    #made to be float16 without issue but this will need to be done in your own code as the hdf5
-    #converter doesn't like mixed types (hence forcing the special datatype)
-
+    #This code will mainly make the files be in a mix of variable types. You will need to convert from strings to floats in some cases
 
 #####################################################################################################
 def csv_to_hdf5(directory):
@@ -249,6 +246,4 @@ def csv_to_hdf5(directory):
     out_file.close()
     
     #IMPORTANT
-    #This code will mainly make the files be in a mix of variable types. ALL numerical values can be
-    #made to be float16 without issue but this will need to be done in your own code as the hdf5
-    #converter doesn't like mixed types (hence forcing the special datatype)
+    #This code will mainly make the files be in a mix of variable types. You will need to convert from strings to floats in some cases.
