@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+import h5py
 
 def csv_to_df(directory):
     data = []    
